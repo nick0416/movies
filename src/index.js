@@ -5,9 +5,9 @@ import { createStore } from 'redux';
 
 import App from './components/App';
 import './index.css';
-import movies from './reducers';
+import rootReducer from './reducers';
 
-const store = createStore(movies);
+const store = createStore(rootReducer);
 console.log(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
