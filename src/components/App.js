@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
 import { data } from "../data";
 import { addMovies, setShowFavourite } from "../actions/index";
-import { connect } from "../index";
+import { connect } from "react-redux";
 
 class App extends React.Component {
   componentDidMount() {
