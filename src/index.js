@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { createStore, applyMiddleware } from 'redux';
@@ -20,11 +20,27 @@ const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 console.log(store);
 console.log("state:", store.getState());
 
+// CONTEXT CREATION
+export const StoreContext = createContext();
+console.log("Store Context", StoreContext);
+
+// OWN CLASS PROVIDER
+class Provider extends React.Component {
+  render() {
+    const { store } = this.props;
+    return <StoreContext.Provider value={store}>
+      {this.props.children}
+    </StoreContext.Provider>
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App store={store} />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
 );
 
 reportWebVitals();
